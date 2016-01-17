@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:57:14 by ngrasset          #+#    #+#             */
-/*   Updated: 2015/11/23 16:33:43 by ngrasset         ###   ########.fr       */
+/*   Updated: 2016/01/15 16:54:22 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	int		lim;
 	char	*copy;
 
-	lim = (int)n;
+	if (!s)
+		return ;
 	copy = (char *)s;
-	while (lim > 0)
+	while (n > 0)
 	{
 		*copy = '\0';
-		lim--;
+		n--;
 		copy++;
 	}
 }
