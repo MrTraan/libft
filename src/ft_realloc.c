@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/17 19:25:17 by ngrasset          #+#    #+#             */
-/*   Updated: 2016/01/17 19:30:07 by ngrasset         ###   ########.fr       */
+/*   Updated: 2016/08/16 14:19:30 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_realloc(void *ptr, size_t o_size, size_t n_size)
 {
-	char	*dst;
+	void	*dst;
 
 	if (!ptr)
 		return (NULL);
