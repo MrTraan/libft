@@ -6,7 +6,7 @@
 #    By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 13:41:14 by ngrasset          #+#    #+#              #
-#    Updated: 2016/01/06 14:26:30 by ngrasset         ###   ########.fr        #
+#    Updated: 2016/01/25 15:19:20 by ngrasset         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC =	ft_memalloc.c		ft_memdel.c		ft_memset.c			ft_bzero.c\
 		ft_lstdelone.c		ft_lstdel.c		ft_lstadd.c			ft_lstiter.c\
 		ft_lstmap.c			ft_lstpush_back.c					ft_print_color.c\
 		ft_getchar.c		ft_putstrtab.c	get_next_line.c		ft_lstpop.c\
-		ft_delstrtab.c		ft_strjoin_delim.c					ft_str_isalpha.c
+		ft_delstrtab.c		ft_strjoin_delim.c					ft_str_isalpha.c\
+		ft_realloc.c		ft_isspace.c
 NAME = libft.a
 INCLUDES = -I includes/
 CFLAGS = -Wall -Wextra -Werror

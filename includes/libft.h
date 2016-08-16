@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:27:25 by ngrasset          #+#    #+#             */
-/*   Updated: 2016/01/06 14:26:19 by ngrasset         ###   ########.fr       */
+/*   Updated: 2016/02/02 00:59:31 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define FT_C_WHITE "37m"
 # define FT_C_RESET "\x1B[0m"
 # define BUFF_SIZE 100
-# define MAX_FD 100
+# define MAX_FD 255
 
 typedef struct		s_list
 {
@@ -34,12 +34,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_overflow
-{
-	char			overflow[BUFF_SIZE + 1];
-	char			set;
-}					t_overflow;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -67,6 +61,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isspace(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				*ft_memalloc(size_t size);
@@ -111,5 +106,6 @@ int					get_next_line(int const fd, char **line);
 void				ft_delstrtab(char **tab);
 char				*ft_strjoin_delim(char *s1, char *s2, char *delim);
 int					ft_str_isalpha(char const *s);
+void				*ft_realloc(void *ptr, size_t o_size, size_t n_size);
 
 #endif

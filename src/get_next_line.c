@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:57:09 by ngrasset          #+#    #+#             */
-/*   Updated: 2015/12/12 18:24:07 by ngrasset         ###   ########.fr       */
+/*   Updated: 2016/02/02 00:59:59 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,74 +31,61 @@ char	*mem_concat(char *dst, char *src)
 	return (res);
 }
 
-int		get_overf(char **line, t_overflow *overf)
+int		get_overf(char **line, char *overflow)
 {
-	char	*raw_data;
 	char	*endl;
 
-	raw_data = NULL;
-	raw_data = ft_strdup(overf->overflow);
-	if (!raw_data)
-		return (-1);
-	endl = ft_strchr(raw_data, '\n');
+	endl = ft_strchr(overflow, '\n');
 	if (endl)
 	{
 		*endl = '\0';
-		*line = raw_data;
-		raw_data = ft_strcpy(overf->overflow, endl + 1);
-		if (!raw_data)
-			overf->set = 0;
-		else
-			overf->set = 1;
+		*line = ft_strdup(overflow);
+		ft_memmove(overflow, endl + 1, BUFF_SIZE - (endl - overflow));
 		return (1);
 	}
-	*line = raw_data;
+	*line = ft_strdup(overflow);
+	ft_memset(overflow, 0, BUFF_SIZE + 1);
 	return (0);
 }
 
-int		get_next_buffer(char **line, t_overflow *overf, int fd, char buffer[])
+int		get_next_buffer(char **line, char *overflow, int fd)
 {
 	int		ret;
 	char	*endl;
+	char	buffer[BUFF_SIZE + 1];
 
-	while ((ret = read(fd, buffer, BUFF_SIZE)))
+	while ((ret = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
-		if (ret == -1)
-			return (-1);
 		buffer[ret] = '\0';
-		*line = mem_concat(*line, buffer);
-		if (!*line)
-			return (-1);
-		endl = ft_strchr(*line, '\n');
+		endl = ft_strchr(buffer, '\n');
 		if (endl)
 		{
 			*endl = '\0';
-			ft_strcpy(overf->overflow, endl + 1);
-			if (ft_strlen(overf->overflow) != 0)
-				overf->set = 1;
-			else
-				overf->set = 0;
+			*line = mem_concat(*line, buffer);
+			ft_strcpy(overflow, endl + 1);
 			return (1);
 		}
+		*line = mem_concat(*line, buffer);
 	}
-	return (0);
+	return (ret);
 }
 
 int		get_next_line(int const fd, char **line)
 {
-	static t_overflow	overf[MAX_FD];
-	char				buffer[BUFF_SIZE + 1];
+	static char			overf[MAX_FD][BUFF_SIZE + 1];
 	int					ret;
 
 	if (fd < 0 || fd > MAX_FD || !line)
 		return (-1);
 	*line = NULL;
-	if (overf[fd].set)
+	if (overf[fd][0])
 	{
-		ret = get_overf(line, &overf[fd]);
+		ret = get_overf(line, overf[fd]);
 		if (ret != 0)
 			return (ret);
 	}
-	ret = get_next_buffer(line, &overf[fd], fd, buffer);
-	return (ret);
+	ret = get_next_buffer(line, overf[fd], fd);
+	if (ret == -1)
+		return (-1);
+	return (*line != NULL);
 }
