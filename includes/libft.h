@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:27:25 by ngrasset          #+#    #+#             */
-/*   Updated: 2016/02/02 00:59:31 by ngrasset         ###   ########.fr       */
+/*   Updated: 2016/08/16 14:33:34 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # define FT_C_CYAN "36m"
 # define FT_C_WHITE "37m"
 # define FT_C_RESET "\x1B[0m"
-# define BUFF_SIZE 100
-# define MAX_FD 255
+# define LIBFT_BUFF_SIZE 100
+# define LIBFT_MAX_FD 255
+
 
 typedef struct		s_list
 {

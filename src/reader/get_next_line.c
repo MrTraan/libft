@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:57:09 by ngrasset          #+#    #+#             */
-/*   Updated: 2016/02/02 00:59:59 by ngrasset         ###   ########.fr       */
+/*   Updated: 2016/08/16 14:33:32 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int		get_overf(char **line, char *overflow)
 	{
 		*endl = '\0';
 		*line = ft_strdup(overflow);
-		ft_memmove(overflow, endl + 1, BUFF_SIZE - (endl - overflow));
+		ft_memmove(overflow, endl + 1, LIBFT_BUFF_SIZE - (endl - overflow));
 		return (1);
 	}
 	*line = ft_strdup(overflow);
-	ft_memset(overflow, 0, BUFF_SIZE + 1);
+	ft_memset(overflow, 0, LIBFT_BUFF_SIZE + 1);
 	return (0);
 }
 
@@ -52,9 +52,9 @@ int		get_next_buffer(char **line, char *overflow, int fd)
 {
 	int		ret;
 	char	*endl;
-	char	buffer[BUFF_SIZE + 1];
+	char	buffer[LIBFT_BUFF_SIZE + 1];
 
-	while ((ret = read(fd, buffer, BUFF_SIZE)) > 0)
+	while ((ret = read(fd, buffer, LIBFT_BUFF_SIZE)) > 0)
 	{
 		buffer[ret] = '\0';
 		endl = ft_strchr(buffer, '\n');
@@ -72,10 +72,10 @@ int		get_next_buffer(char **line, char *overflow, int fd)
 
 int		get_next_line(int const fd, char **line)
 {
-	static char			overf[MAX_FD][BUFF_SIZE + 1];
+	static char			overf[LIBFT_MAX_FD][LIBFT_BUFF_SIZE + 1];
 	int					ret;
 
-	if (fd < 0 || fd > MAX_FD || !line)
+	if (fd < 0 || fd > LIBFT_MAX_FD || !line)
 		return (-1);
 	*line = NULL;
 	if (overf[fd][0])
