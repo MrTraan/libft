@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 16:08:31 by ngrasset          #+#    #+#             */
-/*   Updated: 2015/11/25 16:23:41 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/02/05 16:40:06 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 void	ft_putnbr(int n)
 {
-	char	*s_n;
-
-	s_n = ft_itoa(n);
-	write(1, s_n, ft_strlen(s_n));
+	ft_putnbr_fd(n, 1);
 }

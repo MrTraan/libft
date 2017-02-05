@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:27:25 by ngrasset          #+#    #+#             */
-/*   Updated: 2016/08/16 14:45:48 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/02/05 16:24:50 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void				ft_memdel(void **ap);
 ** Number
 */
 char				*ft_itoa(int n);
+char				*ft_ltostr(long long n);
 int					ft_atoi(const char *str);
 
 /*

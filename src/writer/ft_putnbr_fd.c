@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 16:13:07 by ngrasset          #+#    #+#             */
-/*   Updated: 2015/11/25 16:23:24 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/02/05 16:39:53 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*s_n;
-
-	s_n = ft_itoa(n);
-	write(fd, s_n, ft_strlen(s_n));
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	if (n < 0 && n > -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		n *= -1;
+	}
+	if (n < 10 && n > -2147483648)
+		ft_putchar_fd(n + 48, fd);
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
 }
