@@ -6,13 +6,19 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 17:03:17 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/12/10 17:04:13 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/12/17 16:10:48 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <time.h>
 
 float		ft_rand(void)
 {
-	return ((float)((double)rand() / RAND_MAX));
+	static int	seed;
+
+	if (seed == 0)
+		seed = time(NULL);
+	seed = 214013 * seed + 2531011;
+	return (((float)((seed >> 16) & 0x7FFF)) / 32767);
 }
